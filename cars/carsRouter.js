@@ -18,6 +18,24 @@ router.get('/', (req, res)=>{
     })
 })
 
+router.get('/:id', (req, res) => {
+    const { id } = req.params
+
+    db("cars")
+      .where({ id })
+      .first()
+      .then(car =>{
+          if(car){
+            res.status(200).json(car)
+          }else{
+              res.status(404).json({message: "car with specific ID does not exist"})
+          } 
+      })
+      .catch(error =>{
+          res.status(500).json({error: error.message})
+      })
+})
+
 router.post('/', (req, res)=>{
     const carsData = req.body;
     db('cars').insert(carsData)
