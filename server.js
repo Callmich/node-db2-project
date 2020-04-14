@@ -2,7 +2,6 @@ const express = require('express');
 const helmet = require('helmet');
 
 
-//create cars router
 const carsRouter = require('./cars/carsRouter.js');
 
 const server = express();
